@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress - Ishita Mehra</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 min-h-screen bg-blue-900 text-white">
+      <div class="p-6 text-2xl font-bold">Speech<br>Coach</div>
+      <nav class="mt-10">
+        <a href="index1.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Practice</span>
+        </a>
+        <a href="progress.html" class="flex items-center py-3 px-6 bg-blue-800 rounded-l-lg">
+          <span class="ml-3">Progress</span>
+        </a>
+        <a href="leaderboard.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Leaderboard</span>
+        </a>
+        <a href="settings.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 space-y-8">
+      <h1 class="text-3xl font-bold mb-6">📈 Progress - Ishita Mehra</h1>
+
+      <!-- Progress Summary -->
+      <div class="grid grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl shadow p-6 text-center">
+          <h2 class="text-lg font-semibold text-gray-600">Total XP</h2>
+          <p class="text-3xl font-bold text-blue-600">2,800</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6 text-center">
+          <h2 class="text-lg font-semibold text-gray-600">Current Streak</h2>
+          <p class="text-3xl font-bold text-orange-500">🔥 5 days</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6 text-center">
+          <h2 class="text-lg font-semibold text-gray-600">Level</h2>
+          <p class="text-3xl font-bold text-green-600">Intermediate</p>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="grid grid-cols-2 gap-6">
+        <!-- Line Chart -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">XP Growth Over Time</h2>
+          <canvas id="lineChart"></canvas>
+        </div>
+
+        <!-- Radar Chart -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Skill Breakdown</h2>
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Milestones -->
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h2 class="text-xl font-semibold mb-4">Milestones</h2>
+        <ul class="space-y-3 text-gray-700">
+          <li>✅ Completed 20 practice sessions</li>
+          <li>✅ Improved pronunciation accuracy by 12%</li>
+          <li>🔥 Maintained a 5-day streak</li>
+          <li>🏆 Reached Intermediate Level</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+
+  <!-- Charts Script -->
+  <script>
+    // Line Chart (XP Growth)
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    new Chart(ctxLine, {
+      type: 'line',
+      data: {
+        labels: ['Day 1','Day 2','Day 3','Day 4','Day 5'],
+        datasets: [{
+          label: 'XP Earned',
+          data: [400, 950, 1600, 2200, 2800],
+          borderColor: '#3b82f6',
+          backgroundColor: 'rgba(59,130,246,0.2)',
+          fill: true,
+          tension: 0.4,
+          borderWidth: 3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, grid: { drawBorder: false } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // Radar Chart (Skills)
+    const ctxRadar = document.getElementById('radarChart').getContext('2d');
+    new Chart(ctxRadar, {
+      type: 'radar',
+      data: {
+        labels: ['Pronunciation', 'Fluency', 'Confidence', 'Clarity', 'Consistency'],
+        datasets: [{
+          label: 'Skill Level',
+          data: [75, 70, 80, 68, 72], // Ishita's skills
+          backgroundColor: 'rgba(16,185,129,0.2)',
+          borderColor: '#10b981',
+          borderWidth: 2,
+          pointBackgroundColor: '#10b981'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            beginAtZero: true,
+            angleLines: { color: '#ddd' },
+            grid: { color: '#eee' }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
