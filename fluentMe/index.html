@@ -1,42 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>FluentMe</title>
-    <link rel="stylesheet" href="styles1.css" />
-    <link rel="stylesheet" href="header.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluentMe - AI Speech Training</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* -----------------------
+           GLOBAL STYLES & VARIABLES
+           ----------------------- */
+        :root {
+            --primary-color: #2575fc;
+            --primary-light: #f0f6ff;
+            --accent-color: #00c6ff;
+            --dark-color: #1a1a1a;
+            --light-color: #ffffff;
+            --text-color: #4a4a4a;
+            --subtle-text: #7c7c7c;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--primary-light);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            color: var(--subtle-text);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 6px 20px rgba(37, 117, 252, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #1b5ed6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 117, 252, 0.4);
+        }
+        
+        /* -----------------------
+           NAVBAR
+           ----------------------- */
+        .navbar {
+            background: var(--light-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+        }
+
+        .navbar .logo-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .navbar .tagline {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--subtle-text);
+            margin-left: 10px;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0 30px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-color);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .navbar .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar .cta-btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        /* Burger Menu */
+        .burger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-color);
+            transition: var(--transition);
+        }
+        
+        /* -----------------------
+           HERO SECTION
+           ----------------------- */
+        #hero {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--light-color) 100%);
+            padding: 120px 0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text h1 strong {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 35px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        
+        /* -----------------------
+           STATS SECTION
+           ----------------------- */
+        #stats {
+            background: var(--light-color);
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        /* -----------------------
+           FEATURES SECTION
+           ----------------------- */
+        #features {
+            background: var(--primary-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .feature-card {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        
+        /* -----------------------
+           TESTIMONIALS SECTION
+           ----------------------- */
+        #testimonials {
+            background: var(--primary-color);
+            color: white;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        #testimonials h2, #testimonials p {
+            color: white;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            gap: 25px;
+            padding-bottom: 20px;
+        }
+
+        .testimonial-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .testimonial-slider::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        
+        .testimonial-card {
+            min-width: 400px;
+            scroll-snap-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: left;
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .testimonial-card .author {
+            font-weight: bold;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 10px;
+            display: block;
+        }
+        
+        /* -----------------------
+           FAQ SECTION
+           ----------------------- */
+        #faq {
+            background: var(--light-color);
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            background: #fafafa;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+        
+        .faq-item h4 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-item p {
+            font-size: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding-top: 0;
+            color: var(--text-color);
+        }
+        
+        .faq-item.active p {
+            max-height: 200px;
+            padding-top: 15px;
+        }
+        
+        .faq-item .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+        
+        /* -----------------------
+           CTA SECTION
+           ----------------------- */
+        #cta {
+            background: var(--primary-light);
+            padding: 80px 0;
+        }
+
+        #cta h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        #cta p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* -----------------------
+           FOOTER
+           ----------------------- */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* -----------------------
+           RESPONSIVE DESIGN
+           ----------------------- */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .navbar .container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .navbar .nav-links {
+                display: none;
+            }
+            
+            .burger {
+                display: flex;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="header-container"></div>
 
-    <main class="content-container">
-        <div class="text-content">
-            <h2>Welcome to FluentMe</h2>
-            <h3>Your Personal Voice and Speech Training Companion</h3>
-            <p>At FluentMe, we believe that clear communication is a superpower. Whether you're preparing for a presentation, improving everyday conversations, or overcoming challenges with speech, we are here to help you gain confidence and speak with clarity.</p>
-            <a class="button" href="login.html">Get Started</a>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-group">
+                <h1 class="logo">FluentMe</h1>
+                <span class="tagline">Your AI Speech Buddy</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#cta" class="btn btn-primary cta-btn">Start Free Trial</a>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
+    </nav>
 
-        <div class="image-content">
-            <img src="assets/38336498.jpg" alt="Voice and speech training illustration">
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Unlock Your <strong>Fluent Voice</strong> with AI.</h1>
+                <p>FluentMe's gamified platform uses cutting-edge AI to provide instant pronunciation feedback, helping you speak with confidence and clarity in any situation.</p>
+                <a href="#cta" class="btn btn-primary">Start My Free Trial</a>
+            </div>
+            <div class="hero-image">
+                <img src="/fluentMe/assets/hero.png" alt="AI Speech Training Illustration">
+            </div>
         </div>
-    </main>
+    </section>
 
-    <div id="footer-container"></div>
+    <section id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Pronunciation Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Happy Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Instant Feedback</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Learning Modules</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2>Why FluentMe is Your Best Choice?</h2>
+            <p class="subtitle">Our unique approach combines a powerful AI coach with a fun, interactive learning journey that makes mastering your speech effortless and engaging.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-magic"></i></div>
+                    <h4>Personalized AI Coach</h4>
+                    <p>Our AI assesses your unique speech patterns to create a customized training plan that targets your specific needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                    <h4>Gamified Learning Journey</h4>
+                    <p>Stay motivated with streaks, badges, and fun challenges that make learning feel like a game you want to play every day.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h4>Real-time Feedback</h4>
+                    <p>Speak into your microphone and get instant, actionable feedback on your pronunciation, rhythm, and intonation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>Track Your Progress</h4>
+                    <p>See your improvement over time with detailed reports and visualizations that show how far you've come.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                    <h4>Master Any Accent</h4>
+                    <p>Practice different accents and languages with our diverse range of modules, including American and British English.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                    <h4>Interactive Dialogues</h4>
+                    <p>Engage in realistic, simulated conversations with our AI to build fluency and confidence for real-life scenarios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2>What Our Users Are Saying</h2>
+            <p class="subtitle">Don't just take our word for it. Hear from people who have transformed their communication with FluentMe.</p>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <blockquote>"FluentMe has been a total game-changer for my public speaking. My confidence has skyrocketed, and the real-time feedback is nothing short of incredible."</blockquote>
+                    <span class="author">— Aman Kumar, Marketing Director</span>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>"I've tried so many apps, but FluentMe's gamified approach actually made me want to practice daily. I'm finally getting my speech just right, and it feels so rewarding."</blockquote>
+                    <span class="author">— Harsh , University Student</span>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>"This app feels like having a personal coach in my pocket, always ready to help. I've seen a noticeable improvement in my fluency in just a few short weeks."</blockquote>
+                    <span class="author">— Monika, Software Engineer</span>
+                </div>
+                 <div class="testimonial-card">
+                    <blockquote>"The personalized plans and detailed progress reports are fantastic. I know exactly what I need to work on, and the app makes it easy and fun to do so."</blockquote>
+                    <span class="author">— Bani , Business Consultant</span>
+                </div>
+                 <div class="testimonial-card">
+                    <blockquote>"As an international professional, I needed to sound more confident in meetings. FluentMe helped me identify and fix my problem areas faster than any other method. Highly recommend!"</blockquote>
+                    <span class="author">— Lakshman, Product Manager</span>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>"The app is so intuitive and the feedback is so precise. My kids love the game-like challenges, and I love seeing them become more articulate."</blockquote>
+                    <span class="author">— Rohan , Teacher & Parent</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>How does the AI analyze my speech? <span class="toggle-icon"><i class="fas fa-plus"></i></span></h4>
+                    <p>Our AI model listens for specific phonetic sounds, pitch, and speech patterns. It compares your pronunciation to native speakers and provides targeted, corrective feedback in real-time to help you improve.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is FluentMe suitable for beginners? <span class="toggle-icon"><i class="fas fa-plus"></i></span></h4>
+                    <p>Yes, absolutely! FluentMe is designed for all levels, from beginners who want to build a solid foundation to advanced learners who want to refine their fluency and master a specific accent. The app customizes a plan just for you.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What languages are supported? <span class="toggle-icon"><i class="fas fa-plus"></i></span></h4>
+                    <p>Currently, FluentMe offers comprehensive training for English (American and British accents). We are actively working to add more languages, including Spanish, French, and Mandarin, in the near future!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Speech?</h2>
+            <p>Join over 50,000 users who have unlocked their potential. Start your journey to confident communication today!</p>
+            <a href="#" class="btn btn-primary">Start My Free Trial</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FluentMe. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other open items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle the 'active' class on the clicked item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
-
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-container').innerHTML = data;
-            });
+        });
     </script>
 </body>
 </html>
