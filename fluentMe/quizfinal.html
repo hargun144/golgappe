@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiz</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1 id="quizTitle">Assessment</h1>
+    <p id="instruction">Loading...</p>
+    <p class="sentence" id="sentence">Loading...</p>
+
+    <div class="controls-row">
+      <button id="startBtn">🎤 Start</button>
+      <button id="stopBtn" disabled>⏹ Stop</button>
+      <button id="pronounceBtn">🔊 Pronounce</button>
+      <button id="downloadBtn" style="display:none">⬇️ Download Audio</button>
+    </div>
+
+    <p id="transcriptBox" class="transcript">Transcript: <em id="transcriptText">—</em></p>
+
+    <div class="results" id="results" style="display:none">
+      <h3>Analysis</h3>
+      <div class="overview-grid small">
+        <div class="overview-card"><h4>Duration</h4><p id="rDuration">0s</p></div>
+        <div class="overview-card"><h4>Speaking Time</h4><p id="rSpeak">0s</p></div>
+        <div class="overview-card"><h4>Words</h4><p id="rWords">0</p></div>
+        <div class="overview-card"><h4>WPM</h4><p id="rWpm">0</p></div>
+      </div>
+
+      <div class="analysis-lines">
+        <p id="rPauses">Pauses: —</p>
+        <p id="rStutters">Stutter events: —</p>
+        <p id="rWer">WER (if reading): —</p>
+        <p id="rFluency">Fluency score: —</p>
+      </div>
+    </div>
+
+    <div class="quiz-controls">
+      <button id="nextBtn">Next ➡️</button>
+      <button id="backBtn" onclick="location.href='index.html'">Back</button>
+    </div>
+  </div>
+
+  <script src="quiz.js"></script>
+</body>
+</html>
