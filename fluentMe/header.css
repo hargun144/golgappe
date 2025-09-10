@@ -1,0 +1,18 @@
+header {
+    display: flex;
+    justify-content: space-between; /* Pushes heading to left and nav to right */
+    align-items: center;            /* Vertically centers content */
+    background-color: #ffffff;
+    color: rgb(84, 84, 84);
+    padding: 10px 60px;
+}
+
+nav a {
+    margin: 0 20px;
+    color: rgb(58, 58, 58);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}

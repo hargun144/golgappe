@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Assessment - SpeechPerfect</title>
+    <link rel="stylesheet" href="as.css">
+</head>
+<body>
+    <div class="container">
+        <div class="assessment-card">
+            <div class="header">
+                <h1 class="logo">SpeechPerfect</h1>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">Question 1 of 10</span>
+                </div>
+            </div>
+
+            <!-- Welcome Screen -->
+            <div class="screen active" id="welcomeScreen">
+                <h2 class="screen-title">Speech Assessment</h2>
+                <p class="screen-desc">
+                    We'll ask you to pronounce 10 words to assess your current speech level. 
+                    This will help us create a personalized learning plan for you.
+                </p>
+                <div class="instructions">
+                    <h3>Instructions:</h3>
+                    <ul>
+                        <li>🎤 Make sure your microphone is working</li>
+                        <li>🔊 Speak clearly when prompted</li>
+                        <li>⏱️ You'll have 5 seconds per word</li>
+                        <li>🎯 Try your best - there are no wrong answers</li>
+                    </ul>
+                </div>
+                <button class="btn primary" onclick="startAssessment()">Start Assessment</button>
+            </div>
+
+            <!-- Assessment Screen -->
+            <div class="screen" id="assessmentScreen">
+                <div class="word-display">
+                    <div class="word-card">
+                        <span class="word-text" id="currentWord">Hello</span>
+                        <div class="phonetic" id="phoneticText">/həˈloʊ/</div>
+                    </div>
+                </div>
+
+                <div class="voice-controls">
+                    <button class="voice-btn" id="recordBtn" onclick="toggleRecording()">
+                        <span class="btn-icon" id="recordIcon">🎤</span>
+                        <span class="btn-text" id="recordText">Click to Speak</span>
+                    </button>
+                    <button class="btn secondary" id="playBtn" onclick="playExample()">
+                        <span class="btn-icon">🔊</span>
+                        Play Example
+                    </button>
+                </div>
+
+                <div class="feedback-area" id="feedbackArea">
+                    <div class="feedback-message" id="feedbackMessage"></div>
+                    <div class="accuracy-meter">
+                        <div class="accuracy-bar">
+                            <div class="accuracy-fill" id="accuracyFill"></div>
+                        </div>
+                        <span class="accuracy-text" id="accuracyText">Accuracy: 0%</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn secondary" id="skipBtn" onclick="skipWord()">Skip</button>
+                    <button class="btn primary" id="nextBtn" onclick="nextWord()" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="screen" id="resultsScreen">
+                <h2 class="screen-title">Assessment Complete!</h2>
+                <div class="results-summary">
+                    <div class="score-circle">
+                        <div class="score-value" id="overallScore">85%</div>
+                        <div class="score-label">Overall Accuracy</div>
+                    </div>
+                    
+                    <div class="level-badge">
+                        <div class="level-title" id="levelTitle">Intermediate</div>
+                        <div class="level-desc" id="levelDesc">You have good pronunciation skills with room for improvement</div>
+                    </div>
+                </div>
+
+                <div class="category-breakdown">
+                    <h3>Areas for Improvement:</h3>
+                    <div class="category-list" id="categoryList">
+                        <div class="category-item">
+                            <span class="category-name">Vowel Sounds</span>
+                            <div class="category-bar">
+                                <div class="category-fill" style="width: 70%"></div>
+                            </div>
+                            <span class="category-score">70%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn primary" onclick="startTraining()">Start Personalized Training</button>
+                    <button class="btn secondary" onclick="retakeAssessment()">Retake Assessment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assessment.js"></script>
+</body>
+</html>

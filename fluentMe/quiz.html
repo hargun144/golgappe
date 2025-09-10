@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="styles.css"> <!-- ✅ load CSS -->
+</head>
+<body>
+  <div class="quiz-container">
+    <h1 id="quizTitle">Assessment</h1>
+    <p id="instruction">Loading...</p>
+    <p class="sentence" id="sentence">Loading...</p>
+
+    <button id="startBtn">🎤 Start Recording</button>
+    <button id="stopBtn" disabled>⏹ Stop Recording</button>
+    <audio id="audioPlayback" controls style="display:none;"></audio>
+    <button id="pronounceBtn">🔊</button>
+
+
+    <div class="quiz-controls">
+      <button id="nextBtn">Next ➡️</button>
+    </div>
+  </div>
+
+  <script src="quiz.js"></script>
+</body>
+</html>

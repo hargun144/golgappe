@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FluentMe</title>
+    <link rel="stylesheet" href="styles1.css" />
+    <link rel="stylesheet" href="header.css" />
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main class="content-container">
+        <div class="text-content">
+            <h2>Welcome to FluentMe</h2>
+            <h3>Your Personal Voice and Speech Training Companion</h3>
+            <p>At FluentMe, we believe that clear communication is a superpower. Whether you're preparing for a presentation, improving everyday conversations, or overcoming challenges with speech, we are here to help you gain confidence and speak with clarity.</p>
+            <a class="button" href="login.html">Get Started</a>
+        </div>
+
+        <div class="image-content">
+            <img src="assets/38336498.jpg" alt="Voice and speech training illustration">
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+/* ===== General Reset & Body ===== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    text-align: left;
+    line-height: 1.6;
+}
+
+/* ===== Content Section ===== */
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 70px;
+    gap: 40px;
+    flex-wrap: wrap; /* ✅ makes layout responsive */
+}
+
+.text-content {
+    max-width: 40%;
+    flex: 1 1 400px;
+}
+
+.text-content h2 {
+    font-size: 48px;
+    margin-bottom: 26px;
+    color: #333;
+}
+
+.text-content h3 {
+    font-size: 28px;
+    margin-bottom: 26px;
+    color: #434343;
+}
+
+.text-content p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* ===== Image Section ===== */
+.image-content {
+    display: flex;
+    justify-content: right;
+    flex: 1 1 400px;
+}
+
+.image-content img {
+    max-width: 100%;
+    width: 800px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ===== Button Styles ===== */
+.button {
+    display: inline-block;
+    background: linear-gradient(45deg, #4A90E2, #357ABD);
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #ae235c;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+}
+
+/* ✅ Option 1: Footer at end of content (default) */
+/* footer {
+    position: relative;
+} */
+
+/* ✅ Option 2: Sticky footer always visible at bottom */
+/* footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+} */
+
+/* ===== Responsive Tweaks ===== */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .text-content, 
+    .image-content {
+        max-width: 100%;
+    }
+    .text-content h2 {
+        font-size: 36px;
+    }
+    .text-content h3 {
+        font-size: 22px;
+    }
+    .text-content p {
+        font-size: 16px;
+    }
+    .image-content img {
+        max-width: 100%;
+        width: 100%;
+    }
+}

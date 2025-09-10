@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login / Sign Up - FluentMe</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+   <div id="header-container"> </div>
+
+    <main class="form-container">
+        <div class="form-toggle">
+            <button id="show-login" class="toggle-button">Login</button>
+            <button id="show-signup" class="toggle-button">Sign Up</button>
+        </div>
+
+        <div class="form-box" id="login-form-box">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button class="button" type="submit">Log In</button>
+                <p id="login-error" style="color: red; display: none;">Invalid credentials</p>
+            </form>
+        </div>
+
+        <div class="form-box" id="signup-form-box" style="display: none;">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button class="button" type="submit">Sign Up</button>
+                <p id="signup-success" style="color: green; display: none;">Signed up successfully!</p>
+            </form>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        // Hardcoded admin credentials
+        const adminEmail = "admin@fluentme.com";
+        const adminPassword = "admin123";
+
+        // Elements
+        const loginBox = document.getElementById('login-form-box');
+        const signupBox = document.getElementById('signup-form-box');
+        const showLogin = document.getElementById('show-login');
+        const showSignup = document.getElementById('show-signup');
+
+        // Toggle between forms
+        showLogin.addEventListener('click', () => {
+            loginBox.style.display = 'block';
+            signupBox.style.display = 'none';
+        });
+
+        showSignup.addEventListener('click', () => {
+            loginBox.style.display = 'none';
+            signupBox.style.display = 'block';
+        });
+
+        // Login form handling
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const errorMsg = document.getElementById('login-error');
+
+            if (email === adminEmail && password === adminPassword) {
+                localStorage.setItem('isAdmin', 'true');
+                errorMsg.style.display = 'none';
+                alert("Logged in successfully!");
+                window.location.href = "homepage.html";
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+
+        // Load footer dynamically
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

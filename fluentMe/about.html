@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluentMe - About Us</title>
+    <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-card">
+            <h1 class="logo">Fluent Me</h1>
+            <p class="tagline">AI-Powered Speech Therapy & Pronunciation Correction</p>
+            
+            <div class="hero-text">
+                Welcome to the future of speech therapy! Our gamified platform uses advanced AI 
+                to detect speech patterns, correct pronunciation, and help you speak with confidence. 
+                Join thousands of users who have already improved their communication skills.
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Users Helped</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Available</div>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Personalized Assessment</h3>
+                    <p class="feature-desc">AI analyzes your speech patterns to create a customized learning path just for you.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3 class="feature-title">Gamified Learning</h3>
+                    <p class="feature-desc">Turn speech therapy into an engaging game with levels, achievements, and rewards.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Real-time Feedback</h3>
+                    <p class="feature-desc">Get instant pronunciation feedback and track your progress over time.</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <button class="start-btn" onclick="startJourney()">Start Your Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startJourney() {
+            // Redirect to assessment page
+            window.location.href = 'as.html';
+        }
+
+        // Add floating animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                shape.style.animationDelay = `${index * 2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
