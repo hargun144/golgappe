@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard - Speech Coach</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 min-h-screen bg-blue-900 text-white">
+      <div class="p-6 text-2xl font-bold">FluentMe<br></div>
+      <nav class="mt-10">
+        <a href="index1.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Practice</span>
+        </a>
+        <a href="#" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Progress</span>
+        </a>
+        <a href="leaderboard.html" class="flex items-center py-3 px-6 bg-blue-800 rounded-l-lg">
+          <span class="ml-3">Leaderboard</span>
+        </a>
+        <a href="settings.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+      <h1 class="text-3xl font-bold mb-6">Leaderboard</h1>
+      
+      <!-- Top 3 Cards -->
+      <div class="grid grid-cols-3 gap-6 mb-8">
+        <div class="bg-white rounded-2xl shadow p-6 text-center">
+          <span class="text-4xl">🥇</span>
+          <h2 class="mt-2 font-bold text-xl">Aarav Sharma</h2>
+          <p class="text-gray-600">Advanced • 3200 XP</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6 text-center">
+          <span class="text-4xl">🥈</span>
+          <h2 class="mt-2 font-bold text-xl">Ishita Mehra</h2>
+          <p class="text-gray-600">Intermediate • 2800 XP</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6 text-center">
+          <span class="text-4xl">🥉</span>
+          <h2 class="mt-2 font-bold text-xl">Rohan Verma</h2>
+          <p class="text-gray-600">Beginner • 2100 XP</p>
+        </div>
+      </div>
+
+      <!-- Leaderboard Table -->
+      <div class="bg-white rounded-2xl shadow p-6 mb-8 overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b text-gray-600">
+              <th class="py-3 px-4">Rank</th>
+              <th class="py-3 px-4">User</th>
+              <th class="py-3 px-4">Level</th>
+              <th class="py-3 px-4">XP</th>
+              <th class="py-3 px-4">Streak</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b hover:bg-gray-50">
+              <td class="py-3 px-4 font-bold">1</td>
+              <td class="py-3 px-4">Aarav Sharma</td>
+              <td class="py-3 px-4">Advanced</td>
+              <td class="py-3 px-4">3200</td>
+              <td class="py-3 px-4">🔥 7 days</td>
+            </tr>
+            <tr class="border-b hover:bg-gray-50">
+              <td class="py-3 px-4 font-bold">2</td>
+              <td class="py-3 px-4">Ishita Mehra</td>
+              <td class="py-3 px-4">Intermediate</td>
+              <td class="py-3 px-4">2800</td>
+              <td class="py-3 px-4">🔥 5 days</td>
+            </tr>
+            <tr class="border-b hover:bg-gray-50">
+              <td class="py-3 px-4 font-bold">3</td>
+              <td class="py-3 px-4">Rohan Verma</td>
+              <td class="py-3 px-4">Beginner</td>
+              <td class="py-3 px-4">2100</td>
+              <td class="py-3 px-4">🔥 3 days</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="py-3 px-4 font-bold">4</td>
+              <td class="py-3 px-4">Priya Nair</td>
+              <td class="py-3 px-4">Intermediate</td>
+              <td class="py-3 px-4">1900</td>
+              <td class="py-3 px-4">🔥 2 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Graph Section -->
+      <div class="grid grid-cols-2 gap-6">
+        <!-- Bar Chart -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <h2 class="text-xl font-bold mb-4">XP Comparison</h2>
+          <canvas id="xpChart"></canvas>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <h2 class="text-xl font-bold mb-4">XP Distribution</h2>
+          <canvas id="xpPieChart"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const users = ['Aarav Sharma', 'Ishita Mehra', 'Rohan Verma', 'Priya Nair'];
+    const xp = [3200, 2800, 2100, 1900];
+
+    // Bar Chart
+    const ctxBar = document.getElementById('xpChart').getContext('2d');
+    new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: users,
+        datasets: [{
+          label: 'XP Points',
+          data: xp,
+          backgroundColor: ['#3b82f6','#60a5fa','#93c5fd','#bfdbfe'],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: { beginAtZero: true, grid: { drawBorder: false } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // Pie Chart
+    const ctxPie = document.getElementById('xpPieChart').getContext('2d');
+    new Chart(ctxPie, {
+      type: 'pie',
+      data: {
+        labels: users,
+        datasets: [{
+          data: xp,
+          backgroundColor: ['#2563eb','#3b82f6','#60a5fa','#93c5fd'],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
