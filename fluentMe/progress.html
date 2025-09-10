@@ -2,137 +2,189 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Progress - Ishita Mehra</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speech Assessment - SpeechPerfect</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 850px;
+    }
+
+    .assessment-card {
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 25px;
+      padding: 50px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(15px);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Logo */
+    .logo {
+      font-size: 2.8em;
+      font-weight: 900;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    /* Progress */
+    .progress-container {
+      margin: 0 auto 30px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      transition: width 0.4s ease;
+      border-radius: 10px;
+    }
+    .progress-text {
+      margin-top: 8px;
+      font-size: 0.95em;
+      font-weight: 600;
+      color: #444;
+    }
+
+    /* Screen */
+    .screen {
+      text-align: center;
+    }
+    .screen-title {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 15px;
+    }
+    .screen-desc {
+      font-size: 1.1em;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    /* Instructions */
+    .instructions {
+      background: rgba(42, 82, 152, 0.05);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 30px 0;
+      text-align: left;
+      border-left: 5px solid #2a5298;
+    }
+    .instructions h3 {
+      margin-bottom: 15px;
+      color: #222;
+    }
+    .instructions li {
+      font-size: 1.05em;
+      margin-bottom: 10px;
+      color: #444;
+      list-style: none;
+    }
+
+    /* Button */
+    .btn {
+      border: none;
+      padding: 14px 35px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(42, 82, 152, 0.3);
+    }
+    .btn.primary:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(42, 82, 152, 0.4);
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
-  <div class="flex">
-    <!-- Sidebar -->
-    <aside class="w-64 min-h-screen bg-blue-900 text-white">
-      <div class="p-6 text-2xl font-bold">Speech<br>Coach</div>
-      <nav class="mt-10">
-        <a href="index1.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
-          <span class="ml-3">Dashboard</span>
-        </a>
-        <a href="#" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
-          <span class="ml-3">Practice</span>
-        </a>
-        <a href="progress.html" class="flex items-center py-3 px-6 bg-blue-800 rounded-l-lg">
-          <span class="ml-3">Progress</span>
-        </a>
-        <a href="leaderboard.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
-          <span class="ml-3">Leaderboard</span>
-        </a>
-        <a href="settings.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
-          <span class="ml-3">Settings</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 p-8 space-y-8">
-      <h1 class="text-3xl font-bold mb-6">📈 Progress - Ishita Mehra</h1>
-
-      <!-- Progress Summary -->
-      <div class="grid grid-cols-3 gap-6">
-        <div class="bg-white rounded-2xl shadow p-6 text-center">
-          <h2 class="text-lg font-semibold text-gray-600">Total XP</h2>
-          <p class="text-3xl font-bold text-blue-600">2,800</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow p-6 text-center">
-          <h2 class="text-lg font-semibold text-gray-600">Current Streak</h2>
-          <p class="text-3xl font-bold text-orange-500">🔥 5 days</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow p-6 text-center">
-          <h2 class="text-lg font-semibold text-gray-600">Level</h2>
-          <p class="text-3xl font-bold text-green-600">Intermediate</p>
+<body>
+  <div class="container">
+    <div class="assessment-card">
+      
+      <!-- Header -->
+      <div class="header">
+        <h1 class="logo">SpeechPerfect</h1>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="progress-text" id="progressText">0% Complete</p>
         </div>
       </div>
 
-      <!-- Charts -->
-      <div class="grid grid-cols-2 gap-6">
-        <!-- Line Chart -->
-        <div class="bg-white rounded-2xl shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">XP Growth Over Time</h2>
-          <canvas id="lineChart"></canvas>
+      <!-- Welcome Screen -->
+      <div class="screen active" id="welcomeScreen">
+        <h2 class="screen-title">Speech Assessment</h2>
+        <p class="screen-desc">Assess and improve your pronunciation with AI-powered feedback. Let’s begin!</p>
+        
+        <!-- Instructions -->
+        <div class="instructions">
+          <h3>📌 Instructions</h3>
+          <ul>
+            <li>🎤 Ensure your microphone is working</li>
+            <li>🔊 Speak clearly when prompted</li>
+            <li>⏱️ No time limit – go at your pace</li>
+            <li>🎯 Give your best – there are no wrong answers</li>
+          </ul>
         </div>
 
-        <!-- Radar Chart -->
-        <div class="bg-white rounded-2xl shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Skill Breakdown</h2>
-          <canvas id="radarChart"></canvas>
-        </div>
+        <button class="btn primary" onclick="window.location.href='assessment.html'">
+          🚀 Start Assessment
+        </button>
       </div>
-
-      <!-- Milestones -->
-      <div class="bg-white rounded-2xl shadow p-6">
-        <h2 class="text-xl font-semibold mb-4">Milestones</h2>
-        <ul class="space-y-3 text-gray-700">
-          <li>✅ Completed 20 practice sessions</li>
-          <li>✅ Improved pronunciation accuracy by 12%</li>
-          <li>🔥 Maintained a 5-day streak</li>
-          <li>🏆 Reached Intermediate Level</li>
-        </ul>
-      </div>
-    </main>
+    </div>
   </div>
 
-  <!-- Charts Script -->
   <script>
-    // Line Chart (XP Growth)
-    const ctxLine = document.getElementById('lineChart').getContext('2d');
-    new Chart(ctxLine, {
-      type: 'line',
-      data: {
-        labels: ['Day 1','Day 2','Day 3','Day 4','Day 5'],
-        datasets: [{
-          label: 'XP Earned',
-          data: [400, 950, 1600, 2200, 2800],
-          borderColor: '#3b82f6',
-          backgroundColor: 'rgba(59,130,246,0.2)',
-          fill: true,
-          tension: 0.4,
-          borderWidth: 3
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: { beginAtZero: true, grid: { drawBorder: false } },
-          x: { grid: { display: false } }
-        }
+    // Progress bar animation
+    let progress = 0;
+    const fill = document.getElementById("progressFill");
+    const text = document.getElementById("progressText");
+    setInterval(() => {
+      if(progress < 100){
+        progress += 1;
+        fill.style.width = progress + "%";
+        text.textContent = progress + "% Complete";
       }
-    });
-
-    // Radar Chart (Skills)
-    const ctxRadar = document.getElementById('radarChart').getContext('2d');
-    new Chart(ctxRadar, {
-      type: 'radar',
-      data: {
-        labels: ['Pronunciation', 'Fluency', 'Confidence', 'Clarity', 'Consistency'],
-        datasets: [{
-          label: 'Skill Level',
-          data: [75, 70, 80, 68, 72], // Ishita's skills
-          backgroundColor: 'rgba(16,185,129,0.2)',
-          borderColor: '#10b981',
-          borderWidth: 2,
-          pointBackgroundColor: '#10b981'
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          r: {
-            beginAtZero: true,
-            angleLines: { color: '#ddd' },
-            grid: { color: '#eee' }
-          }
-        }
-      }
-    });
+    }, 60);
   </script>
 </body>
 </html>
