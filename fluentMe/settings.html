@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings - Speech Coach</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/yourfontawesomekit.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100 transition-colors duration-300" id="body">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 min-h-screen bg-blue-900 text-white">
+      <div class="p-6 text-2xl font-bold">FluentMe<br></div>
+      <nav class="mt-10">
+        <a href="index1.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Practice</span>
+        </a>
+        <a href="#" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Progress</span>
+        </a>
+        <a href="leaderboard.html" class="flex items-center py-3 px-6 hover:bg-blue-800 transition">
+          <span class="ml-3">Leaderboard</span>
+        </a>
+        <a href="settings.html" class="flex items-center py-3 px-6 bg-blue-800 rounded-l-lg">
+          <span class="ml-3">Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 space-y-8">
+      <h1 class="text-3xl font-bold mb-6">⚙️ Settings</h1>
+
+      <!-- Profile Settings -->
+      <div class="bg-white rounded-2xl shadow p-6 dark:bg-gray-800 dark:text-white transition">
+        <h2 class="text-xl font-semibold mb-4">👤 Profile Settings</h2>
+        <form class="space-y-4">
+          <div>
+            <label class="block text-gray-700 dark:text-gray-300">Full Name</label>
+            <input type="text" value="Ishita Mehra" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          </div>
+          <div>
+            <label class="block text-gray-700 dark:text-gray-300">Email</label>
+            <input type="email" value="ishita.mehra@example.com" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          </div>
+          <div>
+            <label class="block text-gray-700 dark:text-gray-300">Preferred Language</label>
+            <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <option>English</option>
+              <option>Hindi</option>
+              <option>Punjabi</option>
+              <option>Tamil</option>
+            </select>
+          </div>
+          <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Preferences -->
+      <div class="bg-white rounded-2xl shadow p-6 dark:bg-gray-800 dark:text-white transition">
+        <h2 class="text-xl font-semibold mb-4">🎨 Preferences</h2>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <label class="text-gray-700 dark:text-gray-300">Dark Mode</label>
+            <button id="darkToggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">Toggle</button>
+          </div>
+          <div class="flex items-center justify-between">
+            <label class="text-gray-700 dark:text-gray-300">Enable Notifications</label>
+            <input type="checkbox" class="h-5 w-5 text-blue-600 rounded" checked>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account -->
+      <div class="bg-white rounded-2xl shadow p-6 dark:bg-gray-800 dark:text-white transition">
+        <h2 class="text-xl font-semibold mb-4">🔐 Account</h2>
+        <div class="space-y-4">
+          <button class="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600">Change Password</button>
+          <button class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Logout</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Dark Mode Script -->
+  <script>
+    const toggle = document.getElementById("darkToggle");
+    const body = document.getElementById("body");
+
+    toggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
+    });
+  </script>
+</body>
+</html>
