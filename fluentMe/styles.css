@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #f9fafb;
+  background: #f0f4ff; /* soft blue background */
   color: #111827;
 }
 
@@ -33,7 +33,7 @@ button:disabled {
 
 /* ====== HEADER BANNERS ====== */
 .page-header, .header-card {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #346fce, #377cd0); /* blue gradient */
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -85,11 +85,11 @@ button:disabled {
 .skill-card h3 {
   font-size: 20px;
   margin: 10px 0 6px;
-  color: #1e3a8a;
+  color: #1e3a8a; /* deep blue */
 }
 .skill-card p {
   font-size: 14px;
-  color: #555;
+  color: #3b82f6; /* medium blue for text */
 }
 
 /* top gradient bars */
@@ -101,11 +101,11 @@ button:disabled {
   border-radius: 20px 20px 0 0;
 }
 .skill-card.speak::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-.skill-card.word::before { background: linear-gradient(90deg, #10b981, #34d399); }
-.skill-card.twist::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.skill-card.question::before { background: linear-gradient(90deg, #ef4444, #f87171); }
-.skill-card.photo::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-.skill-card.numbers::before { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+.skill-card.word::before { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+.skill-card.twist::before { background: linear-gradient(90deg, #60a5fa, #2563eb); }
+.skill-card.question::before { background: linear-gradient(90deg, #1e40af, #3b82f6); }
+.skill-card.photo::before { background: linear-gradient(90deg, #4338ca, #6366f1); }
+.skill-card.numbers::before { background: linear-gradient(90deg, #0284c7, #3b82f6); }
 
 /* ====== QUIZ PAGE ====== */
 .quiz-container {
@@ -124,7 +124,7 @@ button:disabled {
 }
 #instruction {
   font-size: 16px;
-  color: #555;
+  color: #3b82f6;
   margin-bottom: 8px;
 }
 .sentence {
@@ -136,9 +136,9 @@ button:disabled {
   margin-top: 20px;
 }
 
-/* Progress style (fake bar look for now) */
+/* Progress style */
 .progress-bar {
-  background: #e5e7eb;
+  background: #e0f2fe;
   border-radius: 10px;
   height: 10px;
   width: 100%;
@@ -167,7 +167,7 @@ button:disabled {
   margin: 30px 0;
 }
 .overview-card {
-  background: #f0f4ff;
+  background: #e0f2fe;
   border-radius: 14px;
   padding: 20px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
@@ -181,7 +181,7 @@ button:disabled {
 .overview-card p {
   font-size: 20px;
   font-weight: bold;
-  color: #111;
+  color: #1e3a8a;
 }
 
 .chart-section {
@@ -216,4 +216,4 @@ button:disabled {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 .skill-badge h3 { font-size: 16px; color: #1e3a8a; margin-bottom: 6px; }
-.skill-badge p { font-size: 18px; font-weight: bold; }
+.skill-badge p { font-size: 18px; font-weight: bold; color: #3b82f6; }
