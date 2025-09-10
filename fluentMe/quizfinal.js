@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         // finished skill set -> show profile
         // slight delay to ensure results saved
-        setTimeout(()=>{ window.location.href = "profile.html"; }, 300);
+        setTimeout(()=>{ window.location.href = "profile_final.html"; }, 300);
       }
     };
   
