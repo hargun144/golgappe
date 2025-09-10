@@ -33,7 +33,7 @@ button:disabled {
 
 /* ====== HEADER BANNERS ====== */
 .page-header, .header-card {
-  background: linear-gradient(135deg, #142e57, #2b61a3); /* blue gradient */
+  background: linear-gradient(135deg, #346fce, #377cd0); /* blue gradient */
   color: white;
   padding: 40px 20px;
   text-align: center;
